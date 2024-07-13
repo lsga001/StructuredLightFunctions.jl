@@ -1,8 +1,10 @@
 module StructuredLightFunctions
 
-export LaguerreGaussian
-include("BeamAmplitudeFunctions.jl")
+export LaguerreGauss
 
-println(LaguerreGaussian(0,0,0,0,0,0))
+using BeamAmplitudeFunctions
+
+
+println(LaguerreGauss(0,0,0,1,1,1))
 
 end

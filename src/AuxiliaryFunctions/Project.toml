@@ -1,0 +1,7 @@
+name = "AuxiliaryFunctions"
+uuid = "3c2da694-a787-421d-a8bb-b8b766a90c3f"
+authors = ["LSGA001 <35610053+lsga001@users.noreply.github.com>"]
+version = "0.1.0"
+
+[deps]
+HypergeometricFunctions = "34004b35-14d8-5ef3-9330-4cdb6864b03a"
