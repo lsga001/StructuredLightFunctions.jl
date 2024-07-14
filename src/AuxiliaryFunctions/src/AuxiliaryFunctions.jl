@@ -1,8 +1,8 @@
 module AuxiliaryFunctions
 
-using HypergeometricFunctions
-
 export beam_width, laguerre_polynomial
+
+using HypergeometricFunctions
 
 function beam_width(w_0, z_R, z)
     return w_0 * ((z^2 + z_R^2)/(z_R^2))^(1/2)
