@@ -1,17 +1,22 @@
 module BeamAmplitudeFunctions
 
-export LaguerreGauss
+
+##########
+module AmplitudeDistributions
+
+export LaguerreGauss, HermiteGauss
 
 using AuxiliaryFunctions
 
-function LaguerreGauss(x, y, z, w_0, p, l, n=1, lambda=620e-9)
+function LaguerreGauss(x, y, z, w_0, p, l, lambda=620e-9, n_index=1)
 
-    k_0 = 2*pi*n/lambda;                # wavenumber [m^-1]
-    z_R = pi*n*w_0^2/lambda;            # Rayleigh length
-    r, phi = sqrt(x^2 + y^2), atan(y,x) # radius [m], angle[rad]  
+    k_0 = wavenumber(lambda, n_index);
+    z_R = rayleigh_length(w_0, lambda, n_index);
+    r, phi = cartesian_to_polar(x, y);
 
     C_lp = sqrt(2*factorial(p)/(pi*factorial(p+abs(l))));
-    w = beam_width(w_0, z_R, z);
+    R_z = beam_radius_of_curvature(z_R, z);
+    w = gaussian_beam_radius(w_0, z_R, z);
 
     return C_lp*
         (1/w)*
@@ -23,5 +28,33 @@ function LaguerreGauss(x, y, z, w_0, p, l, n=1, lambda=620e-9)
         exp(-im*(2*p + abs(l) + 1)*atan(z/z_R))
 
 end
+
+function HermiteGauss(x, y, z, w_0, m, n, lambda=620e-9, n_index=1)
+    k_0 = wavenumber(lambda, n_index);
+    z_R = rayleigh_length(w_0, lambda, n_index);
+    
+    N = m+n;
+    C = sqrt(2 / (pi * factorial(n) * factorial(m))) * 2^(-N/2);
+    R_z = beam_radius_of_curvature(z_R, z);
+
+    return nothing 
+end
+
+end
+##########
+
+##########
+module OtherFunctions
+
+export test_fun
+
+function test_fun()
+    println("This is a test function in the test module!")
+end
+
+end
+##########
+
+export AmplitudeDistributions
 
 end
