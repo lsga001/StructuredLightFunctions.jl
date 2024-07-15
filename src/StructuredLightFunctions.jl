@@ -1,8 +1,13 @@
 module StructuredLightFunctions
 
-using BeamAmplitudeFunctions
+import FromFile: @from
 
-# Export relevant modules
+#@from "utilities/auxiliary_functions.jl" using AuxiliaryFunctions
+@from "beam_amplitude_functions.jl" using AmplitudeDistributions
+#include("utilities/auxiliary_functions.jl")
+
+#include("beam_amplitude_functions.jl")
+
 export AmplitudeDistributions
 
 end

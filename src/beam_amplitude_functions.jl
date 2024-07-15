@@ -1,12 +1,9 @@
-module BeamAmplitudeFunctions
-
-
-##########
 module AmplitudeDistributions
 
-export LaguerreGauss, HermiteGauss
+import FromFile: @from
+@from "utilities/auxiliary_functions.jl" using AuxiliaryFunctions
 
-using AuxiliaryFunctions
+export LaguerreGauss, HermiteGauss
 
 function LaguerreGauss(x, y, z, w_0, p, l, lambda=620e-9, n_index=1)
 
@@ -39,22 +36,5 @@ function HermiteGauss(x, y, z, w_0, m, n, lambda=620e-9, n_index=1)
 
     return nothing 
 end
-
-end
-##########
-
-##########
-module OtherFunctions
-
-export test_fun
-
-function test_fun()
-    println("This is a test function in the test module!")
-end
-
-end
-##########
-
-export AmplitudeDistributions
 
 end

@@ -1,12 +1,10 @@
 module AuxiliaryFunctions
 
-export cartesian_to_polar, wavenumber,
-    rayleigh_length, gaussian_beam_radius, 
-    beam_radius_of_curvature,
-    laguerre_polynomial
-
 using HypergeometricFunctions
 
+export cartesian_to_polar, wavenumber,
+rayleigh_length, gaussian_beam_radius,
+beam_radius_of_curvature, laguerre_polynomial
 
 function cartesian_to_polar(x, y)
     return sqrt(x^2 + y^2), atan(y,x)

@@ -4,7 +4,8 @@ authors = ["Leonardo Sebastian González Aceves"]
 version = "1.0.0-DEV"
 
 [deps]
-BeamAmplitudeFunctions = "9b8be9e8-3f74-4d52-a7eb-996601bae0ef"
+FromFile = "ff7dd447-1dcb-4ce3-b8ac-22a812192de7"
+HypergeometricFunctions = "34004b35-14d8-5ef3-9330-4cdb6864b03a"
 
 [compat]
 julia = "1.6.7"
