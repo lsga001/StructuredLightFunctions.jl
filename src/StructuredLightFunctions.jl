@@ -9,5 +9,8 @@ import FromFile: @from
 #include("beam_amplitude_functions.jl")
 
 export AmplitudeDistributions
+#println(AmplitudeDistributions.Gaussian(0,0,0,1))
+#println(AmplitudeDistributions.LaguerreGauss(0,0,0,1,0,0))
+#println(AmplitudeDistributions.HermiteGauss(0,0,0,1,0,0))
 
 end

@@ -2,7 +2,9 @@ module AuxiliaryFunctions
 
 using HypergeometricFunctions
 
-export cartesian_to_polar, wavenumber,
+export cartesian_to_polar, cartesian_to_elliptical, 
+cartesian_to_elliptical2,
+wavenumber,
 rayleigh_length, gouy_phase,
 gaussian_beam_radius,
 beam_curvature, 
@@ -10,6 +12,26 @@ laguerre_polynomial, hermite_polynomial
 
 function cartesian_to_polar(x, y)
     return sqrt(x^2 + y^2), atan(y,x)
+end
+
+function cartesian_to_elliptical(a, x, y)
+    z = acosh((x+im*y)/a)
+    mu = real(z)
+    nu = imag(z)
+    nu = nu + (nu<0)*2*pi # why?
+    return mu, nu
+end
+
+function cartesian_to_elliptical2(a, x, y)
+    mu = acosh(
+        (sqrt((x+a)^2+y^2)+
+        sqrt((x-a)^2+y^2))/2a
+        );
+    nu = sign(y)*
+        acos(
+        (sqrt((x+a)^2+y^2)-
+        sqrt((x-a)^2+y^2))/2a)
+    return mu, nu 
 end
 
 function wavenumber(lambda, n_index=1)
