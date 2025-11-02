@@ -1,11 +1,11 @@
-module AmplitudeDistributions
+module OpticalModes
 
 import FromFile: @from
-@from "utilities/auxiliary_functions.jl" using AuxiliaryFunctions
+@from "./utilities/auxiliary_functions.jl" using AuxiliaryFunctions
 
-export LaguerreGauss, HermiteGauss
+export LG, HG
 
-function LaguerreGauss(x, y, z, w_0, p, l, lambda=620e-9, n_index=1)
+function LG(x, y, z, w_0, p, l; lambda=620e-9, n_index=1)
 
     k_0 = wavenumber(lambda, n_index);
     z_R = rayleigh_length(w_0, lambda, n_index);
@@ -28,7 +28,7 @@ function LaguerreGauss(x, y, z, w_0, p, l, lambda=620e-9, n_index=1)
 
 end
 
-function HermiteGauss(x, y, z, w_0, m, n, lambda=620e-9, n_index=1)
+function HG(x, y, z, w_0, m, n; lambda=620e-9, n_index=1)
     #doi: 10.1088/2040-8978/18/5/055001
     
     k_0 = wavenumber(lambda, n_index);

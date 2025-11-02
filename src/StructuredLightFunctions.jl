@@ -1,13 +1,11 @@
 module StructuredLightFunctions
 
 import FromFile: @from
+@from "./OpticalModes.jl" using OpticalModes
 
-#@from "utilities/auxiliary_functions.jl" using AuxiliaryFunctions
-@from "beam_amplitude_functions.jl" using AmplitudeDistributions
-#include("utilities/auxiliary_functions.jl")
+using Reexport
+@reexport using .OpticalModes
 
-#include("beam_amplitude_functions.jl")
-
-export AmplitudeDistributions
+export OpticalModes
 
 end

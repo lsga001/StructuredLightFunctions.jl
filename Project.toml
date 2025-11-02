@@ -1,13 +1,15 @@
 name = "StructuredLightFunctions"
 uuid = "b29840c0-bd27-4c34-b919-11c017e536ee"
-authors = ["Leonardo Sebastian González Aceves"]
 version = "1.0.0-DEV"
+authors = ["Leonardo Sebastian González Aceves"]
 
 [deps]
 FromFile = "ff7dd447-1dcb-4ce3-b8ac-22a812192de7"
 HypergeometricFunctions = "34004b35-14d8-5ef3-9330-4cdb6864b03a"
+Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
 
 [compat]
+Reexport = "1.2.2"
 julia = "1.6.7"
 
 [extras]
