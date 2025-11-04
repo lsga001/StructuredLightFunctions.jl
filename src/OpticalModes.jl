@@ -3,9 +3,11 @@ module OpticalModes
 import FromFile: @from
 @from "./utilities/auxiliary_functions.jl" using AuxiliaryFunctions
 
-export LG, HG
+using SpecialFunctions
 
-function LG(x, y, z, w_0, p, l; lambda=620e-9, n_index=1)
+export LG, HG, BG
+
+function LG(x, y, w_0, p, l; z=0, lambda=620e-9, n_index=1)
 
     k_0 = wavenumber(lambda, n_index);
     z_R = rayleigh_length(w_0, lambda, n_index);
@@ -28,7 +30,7 @@ function LG(x, y, z, w_0, p, l; lambda=620e-9, n_index=1)
 
 end
 
-function HG(x, y, z, w_0, m, n; lambda=620e-9, n_index=1)
+function HG(x, y, w_0, m, n; z=0, lambda=620e-9, n_index=1)
     #doi: 10.1088/2040-8978/18/5/055001
     
     k_0 = wavenumber(lambda, n_index);
@@ -49,4 +51,20 @@ function HG(x, y, z, w_0, m, n; lambda=620e-9, n_index=1)
         exp(-im*(N+1)*psi)
 end
 
+function BG(x, y, w_0, l, kt; z=0, lambda=620e-9, n_index=1)
+
+  k_0 = wavenumber(lambda, n_index);
+  z_R = rayleigh_length(w_0, lambda, n_index);
+  r, phi = cartesian_to_polar(x, y);
+
+  C_z = beam_curvature(z_R, z);
+  w = gaussian_beam_radius(w_0, z_R, z);
+  psi = gouy_phase(z_R, z);
+
+  return ( w_0/w )*
+      exp( im*(k_0 - kt^2/(2*k_0))*z - psi )*
+      besselj(l, kt*r/(1+im*z/z_R) )*
+      exp( (-1/w^2 + im*k_0*C_z/2) * (r^2 + kt^2*z^2/k_0^2) )*
+      exp(im*l*phi)
+end
 end
