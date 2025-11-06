@@ -12,6 +12,11 @@ function cartesian_to_polar(x, y)
     return sqrt(x^2 + y^2), atan(y,x)
 end
 
+function cartesian_to_elliptic(x, y, a)
+  z = acosh((x+im*y)/a)
+  return real(z), imag(z)
+end
+
 function wavenumber(lambda, n_index=1)
     return 2*pi*n_index/lambda
 end
