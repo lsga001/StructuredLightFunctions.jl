@@ -4,6 +4,7 @@ import FromFile: @from
 @from "./utilities/auxiliary_functions.jl" using AuxiliaryFunctions
 
 using SpecialFunctions
+using ArgCheck
 
 export LG, HG, BG
 

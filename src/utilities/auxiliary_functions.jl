@@ -1,12 +1,16 @@
 module AuxiliaryFunctions
 
+using ArgCheck
+
 using HypergeometricFunctions
+using LinearAlgebra
 
 export cartesian_to_polar, wavenumber,
 rayleigh_length, gouy_phase,
 gaussian_beam_radius,
 beam_curvature, 
-laguerre_polynomial, hermite_polynomial
+laguerre_polynomial, hermite_polynomial,
+even_ince_polynomial
 
 function cartesian_to_polar(x, y)
     return sqrt(x^2 + y^2), atan(y,x)
@@ -45,6 +49,21 @@ end
 function hermite_polynomial(n,x)
     return (2x)^n*
             pFq((-n/2,(1-n)/2), (), -1/x^2)
+end
+
+function even_ince_polynomial(p,m,q,z)
+  @argcheck 0<=m<=p
+  @argcheck (-1)^(m-p)==1
+
+  if p |> iseven
+    n = p/2;
+    dl = pushfirst!([q*(n-i) for i in 1:n-2], 2*q*n);
+    du = [q*(n+i) for i in 1:n-1];
+    dm = [4*i^2 for i in 0:n-1];
+    M = Tridiagonal(dl, dm, du);
+    F = eigen(M);
+    A0 = F.values
+  end
 end
 
 end
